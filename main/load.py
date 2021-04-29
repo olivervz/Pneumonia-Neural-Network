@@ -7,7 +7,7 @@ import numpy as np
 xray_types = ["NORMAL", "PNEUMONIA"]
 
 # Default size for image
-img_size = 150
+img_size = 250
 
 
 def main():
@@ -18,10 +18,14 @@ def main():
     print('Loading Testing dataset...')
     testing = load_dataset('data/test/')
     print('Finished loading testing dataset')
+    print('Loading Validation dataset...')
+    validation = load_dataset('data/validation/')
+    print('Finished Validation testing dataset')
 
     # generate the x and y sets of training and testing data
     (x_train, y_train) = construct_dataset(training)
     (x_test, y_test) = construct_dataset(testing)
+    (x_validation, y_validation) = construct_dataset(validation)
 
     # Save data to numpy binary
     print('Saving x_train data...')
@@ -32,6 +36,10 @@ def main():
     np.save('data/dataset/x_test.npy', x_test)
     print('Saving y_test data...')
     np.save('data/dataset/y_test.npy', y_test)
+    print('Saving x_validation data...')
+    np.save('data/dataset/x_validation.npy', x_validation)
+    print('Saving y_validaiton data...')
+    np.save('data/dataset/y_validation.npy', y_validation)
     print("Complete")
 
 # A user submitted a function for the same kaggle dataset which converts the
@@ -40,6 +48,7 @@ def main():
 def load_dataset(dir):
     
     dataset = []
+    true = True
     for xray_type in xray_types:
         # Get path to the xray image
         path_to_images = os.path.join(dir, xray_type)
@@ -47,6 +56,9 @@ def load_dataset(dir):
         class_num = xray_types.index(xray_type)
         # List all images in each directory
         for xray_image in os.listdir(path_to_images):
+            # .DS_STORE why do you exist :(
+            if xray_image == '.DS_Store':
+                continue
             # Get path to each image
             path_to_image = os.path.join(path_to_images, xray_image)
             # Use the cv2 library to convert the GRAYSCALE image into an array

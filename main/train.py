@@ -12,7 +12,7 @@ from keras.callbacks import ReduceLROnPlateau
 import cv2
 import os
 
-img_size = 150
+img_size = 250
 
 
 def load_datasets(path):
@@ -27,8 +27,8 @@ def load_datasets(path):
 def normalize_data(x_train, x_test):
     # Since currently each value is between 0-255 int values for color
     # Normalize it to 0-1 float values
-    x_train = np.array(x_train) / 255
-    x_test = np.array(x_test) / 255
+    x_train = x_train / 255
+    x_test = x_test / 255
     return x_train, x_test
 
 
@@ -39,7 +39,7 @@ def reshape_data(x_train, y_train, x_test, y_test):
     # Each image is an array of length 150
     # Each element is another array of length 150
     # Each element of that array is a float array of length 1
-    
+
     # This allows it to be used with keras' training
     x_train = x_train.reshape(-1, img_size, img_size, 1)
     y_train = np.array(y_train)
@@ -51,7 +51,8 @@ def reshape_data(x_train, y_train, x_test, y_test):
 
 def generate_model():
     model = Sequential()
-    model.add(Conv2D(28, kernel_size=(3, 3), input_shape=(150, 150, 1)))
+    model.add(Conv2D(28, kernel_size=(3, 3),
+              input_shape=(img_size, img_size, 1)))
     model.add(MaxPool2D(pool_size=(2, 2)))
     model.add(Flatten())
     model.add(Dense(128, activation='relu'))
@@ -89,8 +90,8 @@ def main():
     model.summary()
 
     # Train model using datasets
-    model.fit(x_train, y_train, epochs=5,
-                        validation_data=(x_test, y_test))
+    model.fit(x_train, y_train, epochs=1,
+              validation_data=(x_test, y_test))
 
     print("Model Loss: ", model.evaluate(x_test, y_test)[0])
     print("Model Accuracy: ",
