@@ -62,29 +62,6 @@ def generate_model():
     model.compile(optimizer='adam',
                   loss='sparse_categorical_crossentropy',
                   metrics=['accuracy'])
-    # model.add(Conv2D(32 , (3,3) , strides = 1 , padding = 'same' , activation = 'relu' , input_shape = (img_size,img_size,1)))
-    # model.add(BatchNormalization())
-    # model.add(MaxPool2D((2,2) , strides = 2 , padding = 'same'))
-    # model.add(Conv2D(64 , (3,3) , strides = 1 , padding = 'same' , activation = 'relu'))
-    # model.add(Dropout(0.1))
-    # model.add(BatchNormalization())
-    # model.add(MaxPool2D((2,2) , strides = 2 , padding = 'same'))
-    # model.add(Conv2D(64 , (3,3) , strides = 1 , padding = 'same' , activation = 'relu'))
-    # model.add(BatchNormalization())
-    # model.add(MaxPool2D((2,2) , strides = 2 , padding = 'same'))
-    # model.add(Conv2D(128 , (3,3) , strides = 1 , padding = 'same' , activation = 'relu'))
-    # model.add(Dropout(0.2))
-    # model.add(BatchNormalization())
-    # model.add(MaxPool2D((2,2) , strides = 2 , padding = 'same'))
-    # model.add(Conv2D(256 , (3,3) , strides = 1 , padding = 'same' , activation = 'relu'))
-    # model.add(Dropout(0.2))
-    # model.add(BatchNormalization())
-    # model.add(MaxPool2D((2,2) , strides = 2 , padding = 'same'))
-    # model.add(Flatten())
-    # model.add(Dense(units = 128 , activation = 'relu'))
-    # model.add(Dropout(0.2))
-    # model.add(Dense(units = 1 , activation = 'sigmoid'))
-    # model.compile(optimizer = "rmsprop" , loss = 'binary_crossentropy' , metrics = ['accuracy'])
     return model
 
 
