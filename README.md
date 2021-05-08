@@ -1,8 +1,14 @@
 # Keras Pneumonia X-ray neural network
 
+#### This was my final project for CS 4100, Artificial Intelligence.\
+
+#### See **_Report.pdf_** for a more detailed project description as well as final outputs.\
+
 ## Usage
 
 ### Required Packages:
+
+#### NOTE: this has only been tested in a linux environment
 
 This project is based on python 3.7.2 and requires several additional packages to be installed via pip. This can be accomplished through the steps below.
 
